@@ -1,5 +1,5 @@
-# ⌚ WatchStore App
-A modern, user-friendly e-commerce app for browsing, selecting, and purchasing watches. Built with Django and PostgreSQL, this app features product categorization, watch straps, and a shopping cart system.
+# ⌚ChronosElite WatchStore App
+A WatchStore App, user-friendly e-commerce app for browsing, selecting, and purchasing watches. Built with Django and PostgreSQL, this app features product categorization, watch straps, and a shopping cart system.
 
 
 ## ✨Features
