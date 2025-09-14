@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,25 +7,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" type="image/png" href="" />
     <title>ChronosElite</title>
-    {% block head %} 
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    {% block head %}
+
     {% endblock %}
   </head>
   <body>
     <header>
       <div class="header-logo-container">
-        <a href="/">
-          <img src="" alt="" />
-        </a>
+        <a href="/"><img src="" alt="" /></a>
       </div>
       <nav>
         <ul>
           <li><a href="/about">About</a></li>
+          <li><a href="/">Home</a></li>
         </ul>
       </nav>
     </header>
     <main>
-     {% block content %} 
-     {% endblock %}
-     </main>
+      {% block content %}
+
+      {% endblock %}
+    </main>
   </body>
 </html>
