@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}  {# Load the static tag after extends #}
+{% load static %}
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/categories/show_watches.css' %}">
@@ -11,9 +11,16 @@
 <div class="watch-container">
     {% for watch in watches %}
         <div class="watch-card">
-            <h2 class="watch-name">{{ watch.name }}</h2>
-            <p class="watch-brand"><strong>Brand:</strong> {{ watch.brand }}</p>
-            <p class="watch-price"><strong>Price:</strong> ${{ watch.price }}</p>
+            {% if watch.image %}
+                <img src="{{ watch.image.url }}" alt="{{ watch.name }}" class="watch-image">
+            {% else %}
+                <img src="{% static 'images/no-image.png' %}" alt="No Image" class="watch-image">
+            {% endif %}
+            <div class="watch-info">
+                <h2 class="watch-name">{{ watch.name }}</h2>
+                <p class="watch-brand"><strong>Brand:</strong> {{ watch.brand }}</p>
+                <p class="watch-price"><strong>Price:</strong> ${{ watch.price }}</p>
+            </div>
         </div>
     {% empty %}
         <p>No watches found in this category.</p>
