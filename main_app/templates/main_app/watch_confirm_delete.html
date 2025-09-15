@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/delete_watch.css' %}" />
+{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+  <h1>Delete Watch?</h1>
+  {% if watch.image %}
+    <img src="{{ watch.image.url }}" alt="{{ watch.name }}" class="watch-image" />
+  {% else %}
+    <img src="{% static 'images/watch-icon.svg' %}" alt="A watch icon" class="watch-image" />
+  {% endif %}
+</div>
+
+<h2 style="text-align: center; margin-bottom: 20px;">
+  Are you sure you want to delete "{{ watch.name }}"?
+</h2>
+
+<form action="" method="post" class="form-container">
+  {% csrf_token %}
+  <div style="display: flex; justify-content: space-between; gap: 10px;">
+    <a href="{% url 'watch_detail' watch.id %}" class="btn secondary">Cancel</a>
+    <button type="submit" class="btn danger">Yes - Delete!</button>
+  </div>
+</form>
+
+{% endblock %}

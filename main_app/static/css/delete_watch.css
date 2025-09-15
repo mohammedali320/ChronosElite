@@ -1,0 +1,43 @@
+/* Watch image in delete form */
+.watch-image {
+  max-width: 150px;
+  height: auto;
+  display: block;
+  margin: 15px auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Delete form buttons */
+.btn.secondary {
+  background: #ccc;
+  color: #333;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+  flex: 1;
+  transition: background 0.3s ease;
+}
+
+.btn.secondary:hover {
+  background: #aaa;
+}
+
+.btn.danger {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  flex: 1;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn.danger:hover {
+  background: #c0392b;
+}

@@ -1,0 +1,35 @@
+.watch-detail {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background-color: #fff;
+    text-align: left; /* keep text (like h2) aligned left */
+}
+
+.watch-image {
+    display: block;        /* make it a block element */
+    margin: 0 auto 15px;   /* center horizontally and add bottom margin */
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.watch-info-list {
+    list-style: none;
+    padding: 0;
+}
+
+.watch-info-list h2 {
+    text-align: left; /* keep title left-aligned */
+    margin-bottom: 15px;
+}
+
+.watch-info-list li {
+    margin: 8px 0;
+    font-size: 1rem;
+    color: #333;
+}

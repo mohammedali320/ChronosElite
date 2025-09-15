@@ -10,6 +10,7 @@
 
 <div class="watch-container">
     {% for watch in watches %}
+    <a href="{% url 'watch_detail' watch.id %}">
         <div class="watch-card">
             {% if watch.image %}
                 <img src="{{ watch.image.url }}" alt="{{ watch.name }}" class="watch-image">
@@ -22,6 +23,7 @@
                 <p class="watch-price"><strong>Price:</strong> ${{ watch.price }}</p>
             </div>
         </div>
+        </a>
     {% empty %}
         <p>No watches found in this category.</p>
     {% endfor %}

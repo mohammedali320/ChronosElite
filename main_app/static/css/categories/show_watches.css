@@ -41,3 +41,8 @@
     margin: 5px 0;
     color: #555;
 }
+.watch-container a {
+    text-decoration: none; 
+    color: inherit;        
+    display: block;        
+}
