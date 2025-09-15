@@ -1,33 +1,57 @@
+/* Container for all cards */
 .card-container {
   padding: 0 30px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 20px;
 }
 
+/* Each card */
 .card {
   width: 275px;
   margin: 10px;
   border: 1px solid #ccc;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   border-radius: 8px;
+  background-color: #fff;
+  transition: all 0.3s ease;
 }
 
+/* Card hover effect */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Remove default link styles */
+.card a {
+  text-decoration: none; /* removes underline */
+  color: inherit;        /* uses the card text color */
+  display: block;        /* makes the link cover the entire card */
+}
+
+/* Card content */
 .card-content {
-  padding: 10px;
+  padding: 15px;
   width: 100%;
 }
 
+/* Card title */
 .card h2 {
   margin: 10px 0;
   font-size: 1.4rem;
+  color: #333; /* dark grey text instead of default blue */
 }
 
+/* Card description */
 .card p, .card ul {
   margin: 5px 0;
   font-size: 1rem;
+  color: #555; /* slightly lighter grey for description */
 }
 
+/* List inside cards */
 .card ul {
   padding-left: 20px;
 }

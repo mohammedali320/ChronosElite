@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}  {# Load the static tag after extends #}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/categories/show_watches.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1>Watches in {{ category.name }}</h1>
+
+<div class="watch-container">
+    {% for watch in watches %}
+        <div class="watch-card">
+            <h2 class="watch-name">{{ watch.name }}</h2>
+            <p class="watch-brand"><strong>Brand:</strong> {{ watch.brand }}</p>
+            <p class="watch-price"><strong>Price:</strong> ${{ watch.price }}</p>
+        </div>
+    {% empty %}
+        <p>No watches found in this category.</p>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,  get_object_or_404
 from .models import Category,Watch
 
 # Import HttpResponse to send text-based responses
@@ -12,6 +12,32 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 # Create a list of Category instances
+
+from .models import Category  # Make sure you import your models
+
+def category_index(request):
+    # Fetch all categories with their watches
+    categories = Category.objects.all()
+    return render(request, 'categories/index.html', {'categories': categories})
+
+
+def watch_index(request):
+    # Fetch all categories with their watches
+    categories = Category.objects.prefetch_related('watches').all()
+    return render(request, 'categories/index.html', {'watches': watches})
+
+def category_detail(request, category_id):
+    cat = Category.objects.get(id=category_id)
+    return render(request, 'cats/detail.html', {'cat': cat})
+
+def show_watches(request, category_id):
+    category = get_object_or_404(Category, id=category_id)
+    watches = Watch.objects.filter(category=category)
+    return render(request, 'categories/show_watches.html', {
+        'category': category,
+        'watches': watches
+    })
+
 categories = [
     Category(name='Mens', description='Watches for men.'),
     Category(name='Womens', description='Watches for women.'),
@@ -27,18 +53,3 @@ watches = [
     Watch(category=categories[2], name='MiniSport', brand='Casio', price=199.99),
     Watch(category=categories[2], name='TinyTime', brand='Timex', price=120.00)
 ]
-
-
-from .models import Category  # Make sure you import your models
-
-def category_index(request):
-    # Fetch all categories with their watches
-    # categories = Category.objects.prefetch_related('watches').all()
-    return render(request, 'categories/index.html', {'categories': categories})
-
-
-def watch_index(request):
-    # Fetch all categories with their watches
-    # categories = Category.objects.prefetch_related('watches').all()
-    return render(request, 'categories/index.html', {'watches': watches})
-
