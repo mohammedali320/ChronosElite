@@ -66,15 +66,25 @@ class WatchCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         return redirect('category_index')
 
 
-class WatchUpdate(LoginRequiredMixin, UpdateView):
+class WatchUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Watch
     fields = ['category', 'name', 'brand', 'price', 'description', 'image']
 
+    def test_func(self):
+        return self.request.user.is_superuser
 
-class WatchDelete(LoginRequiredMixin, DeleteView):
+    def handle_no_permission(self):
+        return redirect('category_index')
+
+class WatchDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Watch
-    success_url = '/'
+    success_url = '/category/'
 
+    def test_func(self):
+        return self.request.user.is_superuser
+
+    def handle_no_permission(self):
+        return redirect('category_index')
 
 def signup(request):
     error_message = ''
