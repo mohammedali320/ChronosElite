@@ -5,7 +5,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
 
 class CustomLoginView(LoginView):
@@ -48,14 +48,22 @@ def watch_detail(request, watch_id):
     })
 
 
-# Correct way to protect CBVs with login
-class WatchCreate(LoginRequiredMixin, CreateView):
+class WatchCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Watch
     fields = ['category', 'name', 'brand', 'price', 'description', 'image']
 
     def form_valid(self, form):
-        form.instance.user = self.request.user  
+        form.instance.user = self.request.user
         return super().form_valid(form)
+
+    # Only superusers can access this view
+    def test_func(self):
+        return self.request.user.is_superuser
+
+    def handle_no_permission(self):
+        # Redirect non-superusers to category page
+        from django.shortcuts import redirect
+        return redirect('category_index')
 
 
 class WatchUpdate(LoginRequiredMixin, UpdateView):

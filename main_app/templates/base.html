@@ -32,9 +32,11 @@
           <li>
             <a href="/cart">🛒Cart</a>
           </li>
+          {% if request.user.is_superuser %}
             <li>
               <a href="{% url 'watch-create' %}">Add a Watch</a>
             </li>
+            {% endif %}
             <li>
               <form id="logout-form" method="post" action="{% url 'logout' %}">
                 {% csrf_token %}
