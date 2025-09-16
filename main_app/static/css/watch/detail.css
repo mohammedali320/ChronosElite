@@ -33,3 +33,44 @@
     font-size: 1rem;
     color: #333;
 }
+
+
+.cat-actions {
+    display: flex;
+    justify-content: flex-start; 
+    gap: 10px;                
+    margin-top: 20px;
+}
+
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    border: none; 
+}
+
+
+.btn.warn {
+    background: #f1c40f;
+    color: #fff;
+}
+
+.btn.warn:hover {
+    background: #d4ac0d;
+}
+
+
+.btn.danger {
+    background: #e74c3c;
+    color: #fff;
+}
+
+.btn.danger:hover {
+    background: #c0392b;
+}

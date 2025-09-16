@@ -1,6 +1,6 @@
 /* Watch image in delete form */
 .watch-image {
-  max-width: 150px;
+  max-width: 250px;
   height: auto;
   display: block;
   margin: 15px auto;
@@ -8,34 +8,38 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-/* Delete form buttons */
-.btn.secondary {
-  background: #ccc;
-  color: #333;
-  padding: 10px;
+.form-buttons {
+  text-align: center; /* centers buttons */
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
   border-radius: 8px;
   font-weight: 600;
   text-decoration: none;
-  text-align: center;
   display: inline-block;
-  flex: 1;
+  cursor: pointer;
+  margin: 0 5px; /* small spacing between buttons */
   transition: background 0.3s ease;
+}
+
+
+/* Secondary button (cancel/back) */
+.btn.secondary {
+  background: #ccc;
+  color: #333;
 }
 
 .btn.secondary:hover {
   background: #aaa;
 }
 
+/* Danger button (delete) */
 .btn.danger {
   background: #e74c3c;
   color: #fff;
   border: none;
-  padding: 10px;
-  border-radius: 8px;
-  font-weight: 600;
-  flex: 1;
-  cursor: pointer;
-  transition: background 0.3s ease;
 }
 
 .btn.danger:hover {
