@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Thank you for your purchase!</h2>
+<p>Your total: ${{ total }}</p>
+<a href="{% url 'category_index' %}">Back to Categories</a>
+{% endblock %}

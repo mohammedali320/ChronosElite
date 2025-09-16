@@ -14,18 +14,27 @@
     {% else %}
         <img src="{% static 'images/no-image.png' %}" alt="No Image" class="watch-image">
     {% endif %}
-    <h2>{{ watch.name }}</h2>
-    <ul class="watch-info-list">
-        <li><strong>Brand:</strong> {{ watch.brand }}</li>
-        <li><strong>Price:</strong> ${{ watch.price }}</li>
-        <li><strong>Category:</strong> {{ watch.category.name }}</li>
-        {% if watch.description %}
-        <li><strong>Description:</strong> {{ watch.description }}</li>
-        {% endif %}
-    </ul>
-    <div class="cat-actions">
-    <a href="{% url 'watch-update' watch.id %}" class="btn warn">Edit</a>
-    <a href="{% url 'watch-delete' watch.id %}" class="btn danger">Delete</a>
-  </div>
+
+    <div class="watch-info">
+        <h2>{{ watch.name }}</h2>
+        <ul class="watch-info-list">
+            <li><strong>Brand:</strong> {{ watch.brand }}</li>
+            <li><strong>Price:</strong> ${{ watch.price }}</li>
+            <li><strong>Category:</strong> {{ watch.category.name }}</li>
+            {% if watch.description %}
+            <li><strong>Description:</strong> {{ watch.description }}</li>
+            {% endif %}
+        </ul>
+        <div class="cat-actions">
+            <a href="{% url 'watch-update' watch.id %}" class="btn warn">Edit</a>
+            <a href="{% url 'watch-delete' watch.id %}" class="btn danger">Delete</a>
+            <form action="{% url 'add_to_cart' watch.id %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn primary">Add to Cart</button>
+            </form>
+        </div>
+    </div>
+
 </div>
+
 {% endblock %}

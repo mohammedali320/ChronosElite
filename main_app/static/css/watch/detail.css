@@ -1,31 +1,40 @@
+
 .watch-detail {
-    max-width: 500px;
+    max-width: 800px;         
     margin: 20px auto;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     background-color: #fff;
-    text-align: left; /* keep text (like h2) aligned left */
+    display: flex;             
+    gap: 20px;                 
+    align-items: flex-start;    
+    flex-wrap: wrap;            
 }
 
+
 .watch-image {
-    display: block;        /* make it a block element */
-    margin: 0 auto 15px;   /* center horizontally and add bottom margin */
     width: 300px;
     height: 300px;
     object-fit: cover;
     border-radius: 10px;
+    flex-shrink: 0;             
+}
+
+
+.watch-info {
+    flex: 1;                    
+}
+
+.watch-info h2 {
+    text-align: left;
+    margin-bottom: 15px;
 }
 
 .watch-info-list {
     list-style: none;
     padding: 0;
-}
-
-.watch-info-list h2 {
-    text-align: left; /* keep title left-aligned */
-    margin-bottom: 15px;
 }
 
 .watch-info-list li {
@@ -34,11 +43,10 @@
     color: #333;
 }
 
-
 .cat-actions {
     display: flex;
-    justify-content: flex-start; 
-    gap: 10px;                
+    justify-content: flex-start;
+    gap: 10px;
     margin-top: 20px;
 }
 
@@ -65,7 +73,6 @@
     background: #d4ac0d;
 }
 
-
 .btn.danger {
     background: #e74c3c;
     color: #fff;
@@ -73,4 +80,34 @@
 
 .btn.danger:hover {
     background: #c0392b;
+}
+
+.btn.primary {
+    background-color: #27ae60;
+    color: #fff;
+}
+
+.btn.primary:hover {
+    background-color: #76efa9;
+}
+
+
+.cat-actions button,
+.cat-actions a {
+    height: 40px;
+    line-height: 1.5;
+}
+
+
+@media (max-width: 700px) {
+    .watch-detail {
+        flex-direction: column;
+        align-items: center;
+    }
+    .watch-image {
+        margin-bottom: 20px;
+    }
+    .watch-info {
+        width: 100%;
+    }
 }

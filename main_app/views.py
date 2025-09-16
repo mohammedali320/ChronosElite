@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Category, Watch, Cart
+from .models import Category, Watch, Cart, CartItem
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 
 class CustomLoginView(LoginView):
     template_name = 'login.html' 
@@ -99,3 +100,29 @@ class CustomLoginView(LoginView):
 
     def get_success_url(self):
         return self.get_redirect_url() or '/category/'
+
+
+@login_required
+def add_to_cart(request, watch_id):
+    watch = get_object_or_404(Watch, id=watch_id)
+    
+    # Get or create user's cart
+    cart, created = Cart.objects.get_or_create(user=request.user)
+    
+    # Check if the watch is already in the cart
+    cart_item, created_item = CartItem.objects.get_or_create(cart=cart, watch=watch)
+    if not created_item:
+        cart_item.quantity += 1
+        cart_item.save()
+    
+    messages.success(request, f"{watch.name} has been added to your cart.")
+    return redirect('watch_detail', watch_id=watch.id)
+
+@login_required
+def checkout(request):
+    cart = get_object_or_404(Cart, user=request.user)
+    items = cart.items.all()
+    total = cart.total_price()
+    cart.items.all().delete()
+
+    return render(request, 'checkout.html', {'total': total})
