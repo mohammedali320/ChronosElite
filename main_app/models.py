@@ -15,6 +15,7 @@ class Category(models.Model):
 class Watch(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='watches')
     name = models.CharField(max_length=100)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     brand = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField(blank=True, null=True)

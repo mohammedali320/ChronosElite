@@ -1,4 +1,4 @@
-/* Reset some default styles */
+
 * {
   margin: 0;
   padding: 0;
@@ -12,7 +12,7 @@ body {
   color: #333;
 }
 
-/* Header styling */
+
 header {
   display: flex;
   justify-content: space-between;
@@ -32,7 +32,7 @@ header {
   display: block;
 }
 
-/* Navigation styling */
+
 nav ul {
   display: flex;
   list-style: none;
@@ -51,14 +51,12 @@ nav ul li a:hover {
   transform: scale(1.05);
 }
 
-/* Main content styling */
 main {
   padding: 40px 20px;
   max-width: 1200px;
   margin: auto;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   header {
     flex-direction: column;
@@ -81,4 +79,21 @@ main {
   .header-logo-container img {
     height: 40px;
   }
+}
+
+
+#logout-form button {
+  background: none;
+  border: none;
+  color: #fff; 
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+#logout-form button:hover {
+  color: #ff7f50;
+  transform: scale(1.05);
 }
