@@ -1,4 +1,3 @@
-/* Container for all cards */
 .card-container {
   padding: 0 30px;
   display: flex;
@@ -7,7 +6,6 @@
   gap: 20px;
 }
 
-/* Each card */
 .card {
   width: 275px;
   margin: 10px;
@@ -18,40 +16,45 @@
   transition: all 0.3s ease;
 }
 
-/* Card hover effect */
 .card:hover {
   transform: translateY(-5px);
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-/* Remove default link styles */
 .card a {
-  text-decoration: none; /* removes underline */
-  color: inherit;        /* uses the card text color */
-  display: block;        /* makes the link cover the entire card */
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
-/* Card content */
+.card-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
 .card-content {
   padding: 15px;
   width: 100%;
 }
 
-/* Card title */
 .card h2 {
   margin: 10px 0;
   font-size: 1.4rem;
-  color: #333; /* dark grey text instead of default blue */
+  color: #333;
 }
 
-/* Card description */
 .card p, .card ul {
   margin: 5px 0;
   font-size: 1rem;
-  color: #555; /* slightly lighter grey for description */
+  color: #555;
 }
 
-/* List inside cards */
 .card ul {
   padding-left: 20px;
+}
+.page-header h1 {
+  text-align: center;
 }

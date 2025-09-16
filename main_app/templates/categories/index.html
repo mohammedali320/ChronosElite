@@ -14,6 +14,11 @@
     {% for category in categories %}
     <div class="card">
         <a href="{% url 'show_watches' category.id %}">
+            {% if category.image %}
+                <img src="{{ category.image.url }}" alt="{{ category.name }}" class="card-image">
+            {% else %}
+                <img src="{% static 'images/no-image.png' %}" alt="No Image" class="card-image">
+            {% endif %}
             <div class="card-content">
                 <h2 class="card-title">{{ category.name }}</h2>
                 <p>{{ category.description }}</p>

@@ -7,6 +7,7 @@ class Category(models.Model):
     name = models.CharField(max_length=50)  # e.g., Mens, Womens, Kids
     description = models.TextField(blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='watch_images/', blank=True, null=True)
 
     def __str__(self):
         return self.name
