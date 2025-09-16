@@ -1,9 +1,11 @@
 from django.shortcuts import render,  get_object_or_404
 from .models import Category,Watch
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-
-# Import HttpResponse to send text-based responses
+from django.contrib.auth.views import LoginView
 from django.http import HttpResponse
+
+class CustomLoginView(LoginView):
+    template_name = 'login.html' 
 
 # Define the home view function
 def home(request):
