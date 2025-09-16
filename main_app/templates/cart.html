@@ -1,22 +1,35 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/cart.css' %}">
+{% endblock %}
 
 {% block content %}
 <div class="cart-container">
     <h2>Your Cart</h2>
+    
     <ul>
       {% for item in items %}
-        <li>
-            {{ item.watch.name }} x {{ item.quantity }} = ${{ item.total_price }}
+        <li class="cart-item">
+            <span class="item-name">{{ item.watch.name }}</span>
+            <span class="item-quantity">x {{ item.quantity }}</span>
+            <span class="item-total">= ${{ item.total_price }}</span>
+            
+            <form action="{% url 'remove_from_cart' item.id %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn danger">Remove</button>
+            </form>
         </li>
       {% empty %}
         <li>Your cart is empty.</li>
       {% endfor %}
     </ul>
 
-    <p><strong>Total:</strong> ${{ total }}</p>
+    <p class="cart-total"><strong>Total:</strong> ${{ total }}</p>
 
     {% if items %}
-        <a href="{% url 'checkout' %}" class="btn-checkout">Proceed to Checkout</a>
+        <a href="{% url 'checkout' %}" class="btn primary">Proceed to Checkout</a>
     {% endif %}
 </div>
 {% endblock %}

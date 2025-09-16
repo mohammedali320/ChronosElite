@@ -1,0 +1,41 @@
+/* Container styling */
+.checkout-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background-color: #fff;
+    text-align: center;
+}
+
+/* Heading */
+.checkout-container h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #27ae60; /* green to indicate success */
+}
+
+/* Total price */
+.checkout-container p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+/* Back to categories link */
+.checkout-container a {
+    display: inline-block;
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    background-color: #1e1e2f; /* blue */
+    color: #fff;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.checkout-container a:hover {
+    background-color: #2c80b4;
+}

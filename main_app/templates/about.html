@@ -1,8 +1,29 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
+
 {% block content %}
-<h1>About ChronosElite</h1>
-<hr />
-<p class="page-content">
-   WatchStore:::::::::::
-</p>
+<div class="about-container">
+    <h1>About ChronosElite</h1>
+    <hr />
+    <p class="page-content">
+        ChronosElite is a user-friendly WatchStore where you can browse, select, and purchase watches from a wide range of categories including Men's, Women's, and Kids' watches. Our goal is to make online shopping seamless, offering detailed watch descriptions, images, and a smooth checkout experience.
+    </p>
+
+    <h2>Our Mission</h2>
+    <p class="page-content">
+        To provide the best online watch shopping experience with quality products, detailed information, and excellent customer service.
+    </p>
+
+    <h2>Features</h2>
+    <ul class="features-list">
+        <li>Browse watches by category</li>
+        <li>View watch details and images</li>
+        <li>Add watches to your cart and checkout easily</li>
+        <li>User authentication for personalized experience</li>
+    </ul>
+</div>
 {% endblock %}

@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
+{% load static %} 
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+{% endblock %}
 
 {% block content %}
-<h2>Thank you for your purchase!</h2>
-<p>Your total: ${{ total }}</p>
-<a href="{% url 'category_index' %}">Back to Categories</a>
+<div class="checkout-container">
+    <h2>Thank you for your purchase!</h2>
+    <p>Your total: ${{ total }}</p>
+    <a href="{% url 'category_index' %}">Back to Categories</a>
+</div>
 {% endblock %}
