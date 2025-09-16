@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Category, Watch
+from .models import Category, Watch, Cart
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
@@ -10,10 +10,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 class CustomLoginView(LoginView):
     template_name = 'login.html' 
 
-
 def home(request):
     return render(request, 'login.html')
-
 
 def about(request):
     return render(request, 'about.html')
@@ -29,12 +27,6 @@ def category_index(request):
 def watch_index(request):
     categories = Category.objects.prefetch_related('watches').all()
     return render(request, 'categories/index.html', {'categories': categories})
-
-
-@login_required
-def category_detail(request, category_id):
-    cat = Category.objects.get(id=category_id)
-    return render(request, 'cats/detail.html', {'cat': cat})
 
 
 @login_required
@@ -82,10 +74,28 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('cat-index')
+            return redirect('home')
         else:
             error_message = 'Invalid sign up - try again'
 
     form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'signup.html', context)
+
+@login_required
+def view_cart(request):
+    # Get the logged-in user's cart
+    cart, created = Cart.objects.get_or_create(user=request.user)
+    
+    # Get all items in the cart
+    items = cart.items.all()  # <-- here is `cart.items.all()`
+    
+    total = cart.total_price()
+    
+    return render(request, 'cart.html', {'cart': cart, 'items': items, 'total': total})
+
+class CustomLoginView(LoginView):
+    template_name = 'login.html'
+
+    def get_success_url(self):
+        return self.get_redirect_url() or '/category/'

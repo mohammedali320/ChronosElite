@@ -27,3 +27,23 @@ class Watch(models.Model):
         # Redirect to this watch's detail page
         return reverse("watch_detail", args=[str(self.id)])
 
+class Cart(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)  # Each user has one cart
+
+    def __str__(self):
+        return f"{self.user.username}'s Cart"
+
+    def total_price(self):
+        return sum(item.total_price() for item in self.items.all())
+
+
+class CartItem(models.Model):
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='items')
+    watch = models.ForeignKey('Watch', on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+
+    def __str__(self):
+        return f"{self.quantity} x {self.watch.name}"
+
+    def total_price(self):
+        return self.watch.price * self.quantity

@@ -6,7 +6,6 @@ urlpatterns = [
     path('', views.CustomLoginView.as_view(), name='home'),
     path('category/', views.category_index, name='category_index'),
     path('about/', views.about, name='about'),
-    path('<int:category_id>/', views.category_detail, name='category-detail'),
     path('category/<int:category_id>/watches/', views.show_watches, name='show_watches'),
     path('watch/<int:watch_id>/', views.watch_detail, name='watch_detail'),
     path('watch/create/', views.WatchCreate.as_view(), name='watch-create'),
@@ -14,4 +13,5 @@ urlpatterns = [
     path('watch/<int:pk>/delete/', views.WatchDelete.as_view(), name='watch-delete'), 
     path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
     path('accounts/signup/', views.signup, name='signup'),
+    path('cart/', views.view_cart, name='view_cart'),
 ]

@@ -120,7 +120,7 @@ STATIC_URL = 'static/'
 
 LOGIN_URL = 'home'
 
-LOGIN_REDIRECT_URL = '/about'
+LOGIN_REDIRECT_URL = '/category'
 
 LOGOUT_REDIRECT_URL = 'home'
 

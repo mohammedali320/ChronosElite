@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="cart-container">
+    <h2>Your Cart</h2>
+    <ul>
+      {% for item in items %}
+        <li>
+            {{ item.watch.name }} x {{ item.quantity }} = ${{ item.total_price }}
+        </li>
+      {% empty %}
+        <li>Your cart is empty.</li>
+      {% endfor %}
+    </ul>
+
+    <p><strong>Total:</strong> ${{ total }}</p>
+
+    {% if items %}
+        <a href="{% url 'checkout' %}" class="btn-checkout">Proceed to Checkout</a>
+    {% endif %}
+</div>
+{% endblock %}
