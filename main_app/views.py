@@ -7,11 +7,12 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
+from django.contrib.auth import login as auth_login
 
 class CustomLoginView(LoginView):
     template_name = 'login.html' 
 
-def login(request):
+def login_view(request):
     return render(request, 'login.html')
 
 @login_required
@@ -97,12 +98,13 @@ def signup(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)
+            auth_login(request, user)  
             return redirect('home')
         else:
             error_message = 'Invalid sign up - try again'
+    else:
+        form = UserCreationForm()
 
-    form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'signup.html', context)
 
