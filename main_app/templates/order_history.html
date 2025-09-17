@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/order_history.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="order-container">
+    <h1>Your Orders</h1>
+
+    {% if orders %}
+      {% for order in orders %}
+        <div class="order">
+          <h2>Order #{{ order.id }} - {{ order.status|title }}</h2>
+          <p>Placed on: {{ order.created_at|date:"F j, Y, g:i a" }}</p>
+          <ul>
+            {% for item in order.items.all %}
+              <li>{{ item.quantity }} × {{ item.watch.name }} @ ${{ item.price }} = ${{ item.get_subtotal }}</li>
+            {% endfor %}
+          </ul>
+          <p><strong>Total: ${{ order.get_total }}</strong></p>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>You have no orders yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

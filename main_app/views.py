@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Category, Watch, Cart, CartItem
+from .models import Category, Watch, Cart, CartItem, Order, OrderItem
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
@@ -123,11 +123,7 @@ class CustomLoginView(LoginView):
 @login_required
 def add_to_cart(request, watch_id):
     watch = get_object_or_404(Watch, id=watch_id)
-    
-    # Get or create user's cart
     cart, created = Cart.objects.get_or_create(user=request.user)
-    
-    # Check if the watch is already in the cart
     cart_item, created_item = CartItem.objects.get_or_create(cart=cart, watch=watch)
     if not created_item:
         cart_item.quantity += 1
@@ -140,13 +136,43 @@ def add_to_cart(request, watch_id):
 def checkout(request):
     cart = get_object_or_404(Cart, user=request.user)
     items = cart.items.all()
-    total = cart.total_price()
-    cart.items.all().delete()
+    if not items:
+        messages.warning(request, "Your cart is empty!")
+        return redirect('view_cart')
 
-    return render(request, 'checkout.html', {'total': total})
+    order = Order.objects.create(user=request.user, status='pending')
+
+    total_price = 0
+
+    for item in items:
+        OrderItem.objects.create(
+            order=order,
+            watch=item.watch,
+            quantity=item.quantity,
+            price=item.watch.price
+        )
+        total_price += item.watch.price * item.quantity
+    order.total_price = total_price
+    order.save()
+    items.delete()
+
+    messages.success(request, f"Your order #{order.id} has been placed successfully!")
+    return render(request, 'checkout.html', {'order': order, 'total': total_price})
+
 
 @login_required
 def remove_from_cart(request, item_id):
     item = get_object_or_404(CartItem, id=item_id, cart__user=request.user)
     item.delete()
     return redirect('view_cart')
+
+@login_required
+def order_history(request):
+    # Get all orders for the current user
+    orders = Order.objects.filter(user=request.user).order_by('-created_at')
+
+    # Optionally, include order items in context (can be accessed in template via order.items.all())
+    context = {
+        'orders': orders,
+    }
+    return render(request, 'order_history.html', context)

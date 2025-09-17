@@ -26,12 +26,9 @@
             <li> <a href="{% url 'signup' %}">Sign Up</a> </li>
           {% endif %}
           {% if user.is_authenticated %}
-            <li>
-            <a href="/category">Categories</a>
-          </li>
-          <li>
-            <a href="/cart">🛒Cart</a>
-          </li>
+            <li><a href="/category">Categories</a></li>
+          <li><a href="/cart">🛒Cart</a></li>
+          <li><a href="{% url 'order-history' %}">Orders</a></li>
           {% if request.user.is_superuser %}
             <li>
               <a href="{% url 'watch-create' %}">Add a Watch</a>
