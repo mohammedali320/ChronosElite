@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="hero">
+  <h1>Welcome to ChronosElite</h1>
+  <p>Your destination for premium and stylish watches.</p>
+</div>
+
+<div class="featured-section">
+  <h2>Featured Watches</h2>
+  <div class="featured-container">
+    {% for watch in featured_watches %}
+      <div class="featured-card">
+        {% if watch.image %}
+          <img src="{{ watch.image.url }}" alt="{{ watch.name }}">
+        {% else %}
+          <img src="{% static 'images/no-image.png' %}" alt="No image">
+        {% endif %}
+        <h3>{{ watch.name }}</h3>
+        <p>{{ watch.brand }}</p>
+        <p class="price">${{ watch.price }}</p>
+        <a href="{% url 'watch_detail' watch.id %}" class="btn">View Details</a>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -11,8 +11,13 @@ from django.contrib import messages
 class CustomLoginView(LoginView):
     template_name = 'login.html' 
 
-def home(request):
+def login(request):
     return render(request, 'login.html')
+
+@login_required
+def home(request):
+    featured_watches = Watch.objects.all()[:8] 
+    return render(request, 'home.html', {'featured_watches': featured_watches})
 
 def about(request):
     return render(request, 'about.html')
