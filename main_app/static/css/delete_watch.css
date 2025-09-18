@@ -1,4 +1,4 @@
-/* Watch image in delete form */
+
 .watch-image {
   max-width: 250px;
   height: auto;
@@ -9,7 +9,7 @@
 }
 
 .form-buttons {
-  text-align: center; /* centers buttons */
+  text-align: center; 
   margin-top: 20px;
 }
 
@@ -20,12 +20,10 @@
   text-decoration: none;
   display: inline-block;
   cursor: pointer;
-  margin: 0 5px; /* small spacing between buttons */
+  margin: 0 5px; 
   transition: background 0.3s ease;
 }
 
-
-/* Secondary button (cancel/back) */
 .btn.secondary {
   background: #ccc;
   color: #333;
@@ -35,7 +33,7 @@
   background: #aaa;
 }
 
-/* Danger button (delete) */
+
 .btn.danger {
   background: #e74c3c;
   color: #fff;

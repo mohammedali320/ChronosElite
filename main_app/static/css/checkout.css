@@ -1,4 +1,4 @@
-/* Container styling */
+
 .checkout-container {
     max-width: 500px;
     margin: 50px auto;
@@ -10,27 +10,27 @@
     text-align: center;
 }
 
-/* Heading */
+
 .checkout-container h2 {
     font-size: 2rem;
     margin-bottom: 20px;
-    color: #27ae60; /* green to indicate success */
+    color: #27ae60; 
 }
 
-/* Total price */
+
 .checkout-container p {
     font-size: 1.2rem;
     margin-bottom: 30px;
     color: #333;
 }
 
-/* Back to categories link */
+
 .checkout-container a {
     display: inline-block;
     padding: 10px 25px;
     border-radius: 8px;
     font-weight: 600;
-    background-color: #1e1e2f; /* blue */
+    background-color: #1e1e2f; 
     color: #fff;
     text-decoration: none;
     transition: background 0.3s ease;

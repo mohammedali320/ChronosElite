@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 class Category(models.Model):
-    name = models.CharField(max_length=50)  # e.g., Mens, Womens, Kids
+    name = models.CharField(max_length=50) 
     description = models.TextField(blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='watch_images/', blank=True, null=True)
@@ -27,7 +27,7 @@ class Watch(models.Model):
         return reverse("watch_detail", args=[str(self.id)])
 
 class Cart(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)  # Each user has one cart
+    user = models.OneToOneField(User, on_delete=models.CASCADE)  
 
     def __str__(self):
         return f"{self.user.username}'s Cart"

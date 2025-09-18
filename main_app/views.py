@@ -62,12 +62,10 @@ class WatchCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
-    # Only superusers can access this view
     def test_func(self):
         return self.request.user.is_superuser
 
     def handle_no_permission(self):
-        # Redirect non-superusers to category page
         from django.shortcuts import redirect
         return redirect('category_index')
 
@@ -110,12 +108,8 @@ def signup(request):
 
 @login_required
 def view_cart(request):
-    # Get the logged-in user's cart
     cart, created = Cart.objects.get_or_create(user=request.user)
-    
-    # Get all items in the cart
-    items = cart.items.all()  # <-- here is `cart.items.all()`
-    
+    items = cart.items.all()  
     total = cart.total_price()
     
     return render(request, 'cart.html', {'cart': cart, 'items': items, 'total': total})
@@ -175,10 +169,9 @@ def remove_from_cart(request, item_id):
 
 @login_required
 def order_history(request):
-    # Get all orders for the current user
+
     orders = Order.objects.filter(user=request.user).order_by('-created_at')
 
-    # Optionally, include order items in context (can be accessed in template via order.items.all())
     context = {
         'orders': orders,
     }
