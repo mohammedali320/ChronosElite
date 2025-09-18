@@ -1,6 +1,8 @@
 # ⌚ChronosElite
 A WatchStore, user-friendly e-commerce app for browsing, selecting, and purchasing watches. Built with Django and PostgreSQL, this app features product categorization, watch straps, and a shopping cart system.
 
+## 🔗 Try It Out
+👉 [ChronosElite](https://chronoselite.onrender.com/)
 
 ## ✨Features
 - Browse watches by category (Mens, Womens, Kids)
