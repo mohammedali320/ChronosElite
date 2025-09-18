@@ -19,7 +19,7 @@ A WatchStore, user-friendly e-commerce app for browsing, selecting, and purchasi
 
 ## Models
 - User
-- Cat
+- Category
 - Watch
 - Cart
 - CartItem
