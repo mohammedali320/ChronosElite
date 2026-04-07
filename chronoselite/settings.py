@@ -83,7 +83,8 @@ WSGI_APPLICATION = 'chronoselite.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         default='postgresql://watches_bkrr_user:zUs3EOWjY0fmBq1ScoI1G8kA3NrwFRCu@dpg-d358t733fgac73b8rmc0-a.oregon-postgres.render.com/watches_bkrr',
-        conn_max_age=600
+        conn_max_age=600,
+        ssl_require=True
     )
 }
 
