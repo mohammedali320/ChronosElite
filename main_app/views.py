@@ -9,11 +9,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
 from django.contrib.auth import login as auth_login
 
-class CustomLoginView(LoginView):
-    template_name = 'login.html' 
-
-def login_view(request):
-    return render(request, 'login.html')
 
 @login_required
 def home(request):
@@ -115,7 +110,7 @@ def view_cart(request):
     return render(request, 'cart.html', {'cart': cart, 'items': items, 'total': total})
 
 class CustomLoginView(LoginView):
-    template_name = 'login.html'
+    template_name = 'registration/login.html'
 
     def get_success_url(self):
         return self.get_redirect_url() or '/category/'
